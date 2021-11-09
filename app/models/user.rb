@@ -5,14 +5,14 @@ class User < ApplicationRecord
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
 
+  attr_accessor :password
+
   has_many :questions
 
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
   validates :username, length: { maximum: 40 }, format: { with: /\A[[:word:]]+\z/ }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-
-  attr_accessor :password
 
   validates :password, presence: true, on: :create
   validates :password, confirmation: true
