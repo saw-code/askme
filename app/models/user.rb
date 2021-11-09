@@ -20,10 +20,6 @@ class User < ApplicationRecord
   before_validation :downcase_for_username, :downcase_for_email
   before_save :encrypt_password
 
-  def self.hash_to_string(password_hash)
-    password_hash.unpack('H*')[0]
-  end
-
   def self.authenticate(email, password)
     user = find_by(email: email) # сперва находим кандидата по email
 
@@ -36,6 +32,12 @@ class User < ApplicationRecord
     end
   end
 
+  private
+
+  def self.hash_to_string(password_hash)
+    password_hash.unpack('H*')[0]
+  end
+
   def downcase_for_email
     self.email.downcase!
   end
@@ -43,8 +45,6 @@ class User < ApplicationRecord
   def downcase_for_username
     username.downcase!
   end
-
-  private
 
   def encrypt_password
     if password.present?
