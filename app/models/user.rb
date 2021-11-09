@@ -17,25 +17,8 @@ class User < ApplicationRecord
   validates :password, presence: true, on: :create
   validates :password, confirmation: true
 
-  before_validation :downcase_for_username
-  before_save :encrypt_password, :downcase_for_username
-
-  def downcase_for_username
-    self.username.downcase!
-  end
-
-  def encrypt_password
-    if self.password.present?
-      # создаем т.н. "соль" рандомная строка усложняющая задачу хакерам
-      self.password_salt = User.hash_to_string(OpenSSL::Random.random_bytes(16))
-
-      # создаем хэш пароля - длинная уникальная строка, из к-й невозможно
-      # восстановить исходный пароль
-      self.password_hash = User.hash_to_string(
-        OpenSSL::PKCS5.pbkdf2_hmac(self.password, self.password_salt, ITERATIONS, DIGEST.length, DIGEST)
-      )
-    end
-  end
+  before_validation :downcase_for_username, :downcase_for_email
+  before_save :encrypt_password
 
   def self.hash_to_string(password_hash)
     password_hash.unpack('H*')[0]
@@ -50,8 +33,29 @@ class User < ApplicationRecord
       OpenSSL::PKCS5.pbkdf2_hmac(password, user.password_salt, ITERATIONS, DIGEST.length, DIGEST)
     )
       user
-    else
-      nil
+    end
+  end
+
+  def downcase_for_email
+    self.email.downcase!
+  end
+
+  def downcase_for_username
+    username.downcase!
+  end
+
+  private
+
+  def encrypt_password
+    if password.present?
+      # создаем т.н. "соль" рандомная строка усложняющая задачу хакерам
+      self.password_salt = User.hash_to_string(OpenSSL::Random.random_bytes(16))
+
+      # создаем хэш пароля - длинная уникальная строка, из к-й невозможно
+      # восстановить исходный пароль
+      self.password_hash = User.hash_to_string(
+        OpenSSL::PKCS5.pbkdf2_hmac(self.password, self.password_salt, ITERATIONS, DIGEST.length, DIGEST)
+      )
     end
   end
 end
