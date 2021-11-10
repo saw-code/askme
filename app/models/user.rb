@@ -39,7 +39,7 @@ class User < ApplicationRecord
   end
 
   def downcase_for_email
-    self.email.downcase!
+    email.downcase!
   end
 
   def downcase_for_username
