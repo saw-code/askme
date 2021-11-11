@@ -1,0 +1,16 @@
+current directory: /home/saw-coding/DimOk/ruby/ror/askme/vendor/cache/ruby/2.6.0/gems/racc-1.5.2/ext/racc/cparse
+/home/saw-coding/.rvm/rubies/ruby-2.6.6/bin/ruby -I /home/saw-coding/.rvm/rubies/ruby-2.6.6/lib/ruby/site_ruby/2.6.0 -r ./siteconf20211110-417285-tv0nv5.rb extconf.rb
+checking for rb_ary_subseq()... yes
+creating Makefile
+
+current directory: /home/saw-coding/DimOk/ruby/ror/askme/vendor/cache/ruby/2.6.0/gems/racc-1.5.2/ext/racc/cparse
+make "DESTDIR=" clean
+
+current directory: /home/saw-coding/DimOk/ruby/ror/askme/vendor/cache/ruby/2.6.0/gems/racc-1.5.2/ext/racc/cparse
+make "DESTDIR="
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: /home/saw-coding/DimOk/ruby/ror/askme/vendor/cache/ruby/2.6.0/gems/racc-1.5.2/ext/racc/cparse
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20211110-417285-173bce/racc

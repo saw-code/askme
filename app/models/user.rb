@@ -9,19 +9,18 @@ class User < ApplicationRecord
 
   has_many :questions
 
+  before_validation :downcase_for_username, :downcase_for_email
+  before_save :encrypt_password
+
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
   validates :username, length: { maximum: 40 }, format: { with: /\A[[:word:]]+\z/ }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-
   validates :password, presence: true, on: :create
   validates :password, confirmation: true
 
-  before_validation :downcase_for_username, :downcase_for_email
-  before_save :encrypt_password
-
   def self.authenticate(email, password)
-    user = find_by(email: email.downcase!)
+    user = find_by(email: email&.downcase!)
 
     return unless user.present?
 
@@ -44,11 +43,11 @@ class User < ApplicationRecord
   private
 
   def downcase_for_email
-    email.downcase!
+    email&.downcase!
   end
 
   def downcase_for_username
-    username.downcase!
+    username&.downcase!
   end
 
   def encrypt_password
@@ -59,7 +58,7 @@ class User < ApplicationRecord
       # создаем хэш пароля - длинная уникальная строка, из к-й невозможно
       # восстановить исходный пароль
       self.password_hash = User.hash_to_string(
-        OpenSSL::PKCS5.pbkdf2_hmac(self.password, self.password_salt, ITERATIONS, DIGEST.length, DIGEST)
+        OpenSSL::PKCS5.pbkdf2_hmac(password, password_salt, ITERATIONS, DIGEST.length, DIGEST)
       )
     end
   end
