@@ -33,7 +33,6 @@
 /config/master.key
 .idea
 
-
 /public/packs
 /public/packs-test
 /node_modules

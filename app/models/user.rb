@@ -9,15 +9,32 @@ class User < ApplicationRecord
 
   has_many :questions
 
-  before_validation :downcase_for_username, :downcase_for_email
+  before_validation :downcase_for_username,
+                    :downcase_for_email
+
   before_save :encrypt_password
 
-  validates :email, :username, presence: true
-  validates :email, :username, uniqueness: true
-  validates :username, length: { maximum: 40 }, format: { with: /\A[[:word:]]+\z/ }
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :password, presence: true, on: :create
-  validates :password, confirmation: true
+  validates :email,
+            :username,
+            presence: true
+
+  validates :email,
+            :username,
+            uniqueness: true
+
+  validates :username,
+            length: { maximum: 40 },
+            format: { with: /\A[[:word:]]+\z/ }
+
+  validates :email,
+            format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  validates :password,
+            presence: true,
+            on: :create
+
+  validates :password,
+            confirmation: true
 
   def self.authenticate(email, password)
     user = find_by(email: email&.downcase)
