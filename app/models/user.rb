@@ -9,8 +9,7 @@ class User < ApplicationRecord
 
   has_many :questions
 
-  before_validation :downcase_for_username,
-                    :downcase_for_email
+  before_validation :downcase_for_email_and_username
 
   before_save :encrypt_password
 
@@ -59,11 +58,8 @@ class User < ApplicationRecord
 
   private
 
-  def downcase_for_email
+  def downcase_for_email_and_username
     email&.downcase!
-  end
-
-  def downcase_for_username
     username&.downcase!
   end
 
