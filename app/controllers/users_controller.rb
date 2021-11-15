@@ -28,7 +28,15 @@ class UsersController < ApplicationController
     @questions = [
       Question.new(text: 'Как дела?', created_at: Date.parse('07.10.2021')),
       Question.new(text: 'В чем смысл жизни?', created_at: Date.parse('07.10.2021')),
+      Question.new(text: 'А есть ли этот смысл?', created_at: Date.parse('15.11.2021')),
+      Question.new(text: 'Что делаешь?', created_at: Date.parse('15.11.2021')),
+      Question.new(text: 'Пойдешь гулять?', created_at: Date.parse('15.11.2021')),
+      Question.new(text: 'Во сколько ложишься спать?', created_at: Date.parse('15.11.2021')),
+      Question.new(text: 'Уже стал программистом?', created_at: Date.parse('15.11.2021')),
+      Question.new(text: 'Что такое руби?', created_at: Date.parse('15.11.2021')),
     ]
+
+    @questions_amount = @questions.count
 
     @new_question = Question.new
   end

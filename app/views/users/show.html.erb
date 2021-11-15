@@ -55,7 +55,12 @@
 <%# Блок со списком вопросов к пользователю %>
 <div class="column-3-4">
   <div class="user-questions buffer-both">
+    <div class="count">
+      <%= questions_count_helper(@questions_amount) %>
+    </div>
     <div class="questions-list">
+
+
       <%# Обратите внимание, как мы делаем цикл по всем вопросам, точно %>
       <%# также, как мы делали циклы в ruby %>
       <% @questions.each do |question| %>
