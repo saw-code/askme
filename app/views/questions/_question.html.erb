@@ -4,9 +4,9 @@
       <%= question.text %>
     </div>
 
-      <div class="question-answer text-lead">
-        <%= question.answer if question.answer.present? %>
-      </div>
+    <div class="question-answer text-lead">
+      <%= question.answer if question.answer.present? %>
+    </div>
 
     <div class="question-date">
       <%= question.created_at.strftime('%d %b %M:%H') %>
