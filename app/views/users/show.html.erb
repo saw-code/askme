@@ -44,7 +44,9 @@
 <div class="column-3-4">
   <div class="user-questions buffer-both">
     <div class="count">
-      <%= questions_count_helper(@questions_amount) %>
+      <%= "У вас #{@questions_amount} #{questions_count_helper(@questions_amount, 'вопрос', 'вопроса', 'вопросов')}
+      (ответили на #{@answers_amount} #{questions_count_helper(@answers_amount, 'вопрос', 'вопроса', 'вопросов')},
+      не ответили на #{@unanswered_amount} #{questions_count_helper(@unanswered_amount, 'вопрос', 'вопроса', 'вопросов')})" %>
     </div>
     <div class="questions-list">
 

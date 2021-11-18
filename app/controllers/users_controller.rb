@@ -41,6 +41,8 @@ class UsersController < ApplicationController
     @questions = @user.questions.order(created_at: :desc)
     @new_question = @user.questions.build
     @questions_amount = @questions.count
+    @answers_amount = @questions.where.not(answer: nil).count
+    @unanswered_amount = @questions_amount - @answers_amount
   end
 
   private
