@@ -68,6 +68,7 @@ GEM
     concurrent-ruby (1.1.9)
     crass (1.0.6)
     erubi (1.10.0)
+    execjs (2.8.1)
     ffi (1.15.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
@@ -89,6 +90,7 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
+    pg (1.2.3)
     puma (5.5.2)
       nio4r (~> 2.0)
     racc (1.6.0)
@@ -141,6 +143,8 @@ GEM
     thor (1.1.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    uglifier (4.2.0)
+      execjs (>= 0.3.0, < 3)
     web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -163,10 +167,12 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   listen (~> 3.3)
+  pg
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.1)
   sqlite3 (~> 1.4)
+  uglifier
   web-console (>= 4.1.0)
   webpacker (~> 5.0)
 
