@@ -16,7 +16,21 @@
   <div class="header-logo">
     <h1 class="header-title"><%= link_to "Хорошие вопросы", root_path %></h1>
   </div>
+
+  <div class="header-nav">
+    <%# Если есть текущий юзер (значит он залогинен) %>
+    <%# if current_user %>
+    <%# Даем ссылки на его профиль и на логаут %>
+    <!--    <%#= link_to "@#{current_user.username}", user_path(current_user) %> |-->
+    <%#= link_to 'Выйти', log_out_path %>
+    <%# else %>
+    <%# Если нету — ссылки на регистрацию и логин %>
+    <%= link_to 'Зарегистрироваться', sign_up_path, class: 'button button-light button-small' %>
+    <%= link_to 'Войти', log_in_path, class: 'button button-light button-small' %>
+    <%# end %>
+  </div>
 </div>
+
 
 <div class="content">
   <div class="container">

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params) #передаем параметры из формы users/new
 
     if @user.save
-      redirect_to root_url, notice: 'Пользователь успешно зарегистрирован!'
+      redirect_to root_path, notice: 'Пользователь успешно зарегистрирован!'
     else
       render 'new'
     end
