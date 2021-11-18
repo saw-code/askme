@@ -15,5 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    session[:user_id] = nil
+    redirect_to root_path, notice: 'Вы разлогинелись! Приходите еще!'
   end
 end
