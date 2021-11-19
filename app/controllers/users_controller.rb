@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params) #передаем параметры из формы users/new
 
     if @user.save
+      session[:user_id] = @user.id
       redirect_to root_path, notice: 'Пользователь успешно зарегистрирован!'
     else
       render :edit
