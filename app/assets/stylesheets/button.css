@@ -15,8 +15,18 @@
 }
 
 .button-green {
-  background: #005a55;
+  background: green;
   color: #fff;
+  cursor: pointer;
+}
+
+.button-red {
+  background: #B00100;
+  color: #fff;
+  margin-left: 5px;
+  line-height: 15px;
+  padding: 7px 15px;
+  font-size: 13.5px;
 }
 
 .button-light {

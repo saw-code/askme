@@ -46,6 +46,12 @@ class UsersController < ApplicationController
     @unanswered_amount = @questions_amount - @answers_amount
   end
 
+  def destroy
+    @user.destroy
+    session[:user_id] = nil
+    redirect_to root_path, notice: 'Аккаунт уничтожен!'
+  end
+
   private
 
   def authorize_user

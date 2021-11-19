@@ -57,9 +57,19 @@
         <%= f.password_field :password_confirmation, class: 'form-text-field' %>
       </div>
 
-      <div class="form-action buffer-top">
-        <%= f.submit 'Сохранить', class: 'button button-dark button-small' %>
+      <div class="column-1-4-left buffer-top">
+        <%= f.submit 'Сохранить', class: 'button button-green button-small' %>
       </div>
+<!--      Опция method: :delete приведет к тому, что ссылка сделает запрос DELETE вместо запроса GET-->
+<!--      Опция data: { confirm: "Are you sure?" } приведет к появлению диалога подтверждения при щелчке на ссылке-->
+      <% if current_user == @user %>
+        <div class="buffer-top column-1-4-left">
+          <%= link_to 'Удалить профиль', @user,
+                      class: 'button button-red',
+                      method: :delete,
+                      data: { confirm: "Точно удалить?" } %>
+        </div>
+      <% end %>
     <% end %>
 
     <%# Подробнее про помощники для создания форм: %>
