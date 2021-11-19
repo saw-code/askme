@@ -1,5 +1,3 @@
-<%# /users/1 %>
-
 <div class="user-header text-center">
   <h1 class="title-medium">
     <%= @user.name %>
@@ -16,40 +14,51 @@
   <h2 class="title-small buffer-both">
     @<%= @user.username %>
   </h2>
+</div>
 
+<div class="user-details">
   <div class="user-ask-button container text-center">
     <%= link_to "Спроси меня", '', class: 'button button-light', id: 'ask-button' %>
+  </div>
+
+  <%# Выводим счетчики вопросов в три колонки. Обратите внимание, что тут %>
+  <%# в пору использовать наш любимый склонятор. На эту тему смотрите ДЗ. %>
+  <div class="user-statistics container text-center">
+    <div class="column-1-3">
+      <h1 class="title-small"><%= @questions_amount %></h1>
+      <p>вопросов</p>
+    </div>
+    <div class="column-1-3">
+      <h1 class="title-small"><%= @answers_amount %></h1>
+      <p>ответов</p>
+    </div>
+    <div class="column-1-3">
+      <h1 class="title-small"><%= @unanswered_amount %></h1>
+      <p>безответных</p>
+    </div>
   </div>
 </div>
 
 <div class="user-question-form-div column-1-4 column-1-4-right" id='ask-form'>
   <div class="user-question-form buffer-both">
-    <div class="form">
-      <%= form_for @new_question do |f| %>
-        <%= f.hidden_field :user_id %>
+    <%= form_for @new_question do |f| %>
+      <%= f.hidden_field :user_id %>
 
-        <div class="form-field">
-          <%= f.label "Ваш вопрос для @#{@user.username}", class: 'form-label' %>
-          <%= f.text_area :text, class: 'form-textarea' %>
-        </div>
+      <div class="form-field">
+        <%= f.label "Ваш вопрос для @#{@user.username}", class: 'form-label' %>
+        <%= f.text_area :text, class: 'form-textarea' %>
+      </div>
 
-        <div class="form-action">
-          <%= submit_tag 'Задать вопрос', class: 'button button-small button-dark' %>
-        </div>
-      <% end %>
-    </div>
+      <div class="form-action">
+        <%= submit_tag 'Задать вопрос', class: 'button button-small button-dark' %>
+      </div>
+    <% end %>
   </div>
 </div>
 
 <div class="column-3-4">
   <div class="user-questions buffer-both">
-    <div class="count">
-      <%= "У вас #{@questions_amount} #{questions_count_helper(@questions_amount, 'вопрос', 'вопроса', 'вопросов')}
-      (ответили на #{@answers_amount} #{questions_count_helper(@answers_amount, 'вопрос', 'вопроса', 'вопросов')},
-      не ответили на #{@unanswered_amount} #{questions_count_helper(@unanswered_amount, 'вопрос', 'вопроса', 'вопросов')})" %>
-    </div>
     <div class="questions-list">
-
       <% @questions.each do |question| %>
         <%= render partial: 'questions/question', object: question %>
       <% end %>

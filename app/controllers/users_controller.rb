@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to root_path, notice: 'Пользователь успешно зарегистрирован!'
     else
-      render 'new'
+      render :edit
     end
   end
 
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user), notice: 'Данные обновлены!'
     else
-      render 'edit'
+      render :edit
     end
   end
 

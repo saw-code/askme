@@ -9,6 +9,7 @@ gem 'puma', '~> 5.0'
 gem 'webpacker', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'uglifier'
+gem 'jquery-rails'
 
 group :production do
   gem 'pg'
@@ -22,5 +23,4 @@ end
 group :development do
   gem 'web-console', '>= 4.1.0'
   gem 'rack-mini-profiler', '~> 2.0'
-  gem 'listen', '~> 3.3'
 end
