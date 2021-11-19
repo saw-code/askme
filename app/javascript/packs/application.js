@@ -24,3 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300)
     })
 })
+
+
+
+document.getElementById('bodybg').onchange = function () {
+    document.body.style.backgroundColor = this.value;
+}
