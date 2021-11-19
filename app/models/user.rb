@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   attr_accessor :password
 
-  has_many :questions, dependent: :destroy
+  has_many :questions, dependent: :destroy #когда объект будет уничтожен, destroy будет вызыван на его связанных объектах
 
   before_validation :downcase_for_validation
 
