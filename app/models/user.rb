@@ -4,6 +4,7 @@ class User < ApplicationRecord
   # параметр работы модуля шифрования паролей
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
+  REGEXP_URL = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&=]*)/i
 
   attr_accessor :password
 
@@ -34,6 +35,10 @@ class User < ApplicationRecord
 
   validates :password,
             confirmation: true
+
+  validates :avatar_url,
+            allow_blank: true,
+            format: { with: REGEXP_URL }
 
   def self.authenticate(email, password)
     user = find_by(email: email&.downcase)
