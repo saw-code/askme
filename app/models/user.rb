@@ -8,7 +8,8 @@ class User < ApplicationRecord
 
   attr_accessor :password
 
-  has_many :questions, dependent: :destroy #когда объект будет уничтожен, destroy будет вызыван на его связанных объектах
+  has_many :questions,
+           dependent: :destroy #когда объект будет уничтожен, destroy будет вызыван на его связанных объектах
 
   before_validation :downcase_for_validation
 
@@ -37,8 +38,8 @@ class User < ApplicationRecord
             confirmation: true
 
   validates :avatar_url,
-            allow_blank: true,
-            format: { with: REGEXP_URL }
+            allow_blank: true, #Опция :allow_blank подобна опции :allow_nil. Эта опция пропускает валидацию, если значение атрибута blank?, например nil или пустая строка.
+            format: { with: REGEXP_URL } #Этот хелпер проводит валидацию значений атрибутов, тестируя их на соответствие указанному регулярному выражению, которое определяется с помощью опции :with
 
   def self.authenticate(email, password)
     user = find_by(email: email&.downcase)
