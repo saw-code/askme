@@ -2,7 +2,7 @@
   <h1 class="title-medium">
     <%= @user.name %>
   </h1>
-
+<!--передаем в путь юзера из экшена edit и переходим на вьюху edit.html.erb. Усли набрать rails routes то увидем префикс edit_user именно по этому пишем edit_user_path-->
   <div class="buffer-both">
     <%= link_to 'Редактировать профиль', edit_user_path(@user) if current_user == @user %>
   </div>

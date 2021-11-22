@@ -25,6 +25,7 @@
       <%= link_to 'Выйти', log_out_path %>
     <% else %>
       <%# Если нету — ссылки на регистрацию и логин %>
+<!--      смотри routes.rb. Перейдем либо users/new либо в sessions/new-->
       <%= link_to 'Зарегистрироваться', sign_up_path, class: 'button button-light button-small' %>
       <%= link_to 'Войти', log_in_path, class: 'button button-light button-small' %>
     <% end %>

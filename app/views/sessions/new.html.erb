@@ -5,6 +5,8 @@
   <div class="column-1-2">
     <div class="form">
       <%# Рисуем форму, которая будет отправлена по адресу /sessions %>
+<!--      seesions_path мы взяли из префикса (rails routes)-->
+<!--      params[:email] здесь запоминается имейл(подставляется то, что было передано в params[:email]). При логине можно не вводить а выбрать из списка-->
       <%= form_tag sessions_path do %>
         <div class="form-field">
           <%= label_tag :email, 'Логин (email)', class: 'form-label' %>
@@ -15,7 +17,7 @@
           <%= label_tag :password, 'Пароль', class: 'form-label' %>
           <%= password_field_tag :password, '', class: 'form-text-field' %>
         </div>
-
+<!--после того как нажмем 'войти' попадаем в контроллер sessions в экшен create и будем переведены на главную страницу либо останемся на этой в случае если неверно ввели данные-->
         <div class="form-action">
           <%= submit_tag "Войти", class: 'button button-dark button-small' %>
         </div>

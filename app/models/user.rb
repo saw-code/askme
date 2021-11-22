@@ -6,7 +6,7 @@ class User < ApplicationRecord
   DIGEST = OpenSSL::Digest::SHA256.new
   REGEXP_URL = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&=]*)/i
 
-  attr_accessor :password
+  attr_accessor :password #виртуальный объект. В чистом виде в базу не попадает(такого поля нет)
 
   has_many :questions,
            dependent: :destroy #когда объект будет уничтожен, destroy будет вызыван на его связанных объектах
