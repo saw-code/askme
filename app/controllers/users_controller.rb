@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
+  # before_action выполняются в том порядке в котором расположены
   before_action :load_user, except: [:index, :create, :new] #фильтр контроллера before_action который будет исполняться перед обращением ко всем экшенам. В except указываем где нам не надо вызывать метод Load_user(кроме этих экшенов)
-  before_action :authorize_user, except: [:index, :new, :create, :show]
+  before_action :authorize_user, except: [:index, :new, :create, :show] # как только выполнен один из методов (redirect или render ), выполнение кода во всех экшенах не будет выполнено
 
   def index
     @users = User.all
@@ -8,7 +9,7 @@ class UsersController < ApplicationController
 
   def new #здесь поьзователи могут заводить новые аккаунты. страница с формой для ввода данных
     if current_user.present?
-      redirect_to root_path, alert: 'Вы уже залогинены'
+      redirect_to root_path, alert: 'Вы уже залогинены' # если текущий юзер вообще присутствует перенаправляем на главную страницу application.html.erb и выводим сообщение
     else
       @user = User.new # во вьюхе по адресу users/new.html.erb используем именно этот объект
     end
@@ -54,8 +55,8 @@ class UsersController < ApplicationController
 
   private
 
-  def authorize_user
-    reject_user unless @user == current_user
+  def authorize_user # запрещаем юзеру если он хочет залезть в чужие потроха
+    reject_user unless @user == current_user # выполняет метод reject_user если @user != current_user
   end
 
   def load_user

@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :load_question, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_user, except: [:create]
+  before_action :load_question, only: [:edit, :update, :destroy]
+  before_action :authorize_user, except: [:create] # кроме create потому что адавать вопрос может даже анонимный пользователь
 
   # GET /questions/1/edit
   def edit
@@ -49,7 +49,7 @@ class QuestionsController < ApplicationController
     # Защита от уязвимости: если текущий пользователь — адресат вопроса,
     # он может менять ответы на вопрос, ему доступно также поле :answer.
     if current_user.present? && params[:question][:user_id].to_i == current_user.id
-      params.require(:question).permit(:user_id, :text, :answer)
+      params.require(:question).permit(:user_id, :text, :answer) # user_id - кому мы адресуем вопрос
     else
       params.require(:question).permit(:user_id, :text)
     end
